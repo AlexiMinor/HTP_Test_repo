@@ -6,7 +6,10 @@ namespace HtpWork
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Input number: ");
+            var x = Console.ReadLine();
+            
+            Console.WriteLine(x);
         }
     }
 }
