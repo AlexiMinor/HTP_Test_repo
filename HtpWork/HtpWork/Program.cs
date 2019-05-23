@@ -6,36 +6,56 @@ namespace HtpWork
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Input number:");
-            var x = Console.ReadLine();
+            while (true)
+            {
+                Calculate();
+                Console.WriteLine("Do you want continue calculation? - y/n");
+                var answer = Console.ReadLine();
+                if (!(answer.Equals("y") || answer.Equals("Y")))
+                    return;
 
-            int number = Convert.ToInt32(x);
+              
+                }  
             
-            WriteArrayOfLongValues(Multiple(number), number);
-
+            
+           // MultipleTable(x);
+            
             Console.ReadLine();
 
         }
 
-        private static long[] Multiple(int number)
+        static void MultipleTable(double x)
         {
-            long[] array = new long[11];
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 11; i++)
             {
-                array[i] = number * i;
+                ICalculation calculator = new Calculator();
+                Console.WriteLine(calculator.Calculate(x, i, "*"));
+            }
             }
 
-            return array;
+        static void Calculate()
+        {
+            Console.WriteLine("Input x:");
+            var x = Console.ReadLine();
+
+            foreach (var symbol in x)
+            {
+                if (!char.IsDigit(symbol))
+                {
+                    return;
+                }
+            }
+
+            Console.WriteLine("Input y:");
+            var y = Convert.ToInt32(Console.ReadLine());
+          
+            Console.WriteLine("Input sign:");
+            var sign = Console.ReadLine();
+                
+            ICalculation calculator = new Calculator();
+            Console.WriteLine(calculator.Calculate(Convert.ToDouble(x), y, sign));
         }
 
-        static void WriteArrayOfLongValues(long[] array, int number)
-        {
-            for (int i = 0; i < array.Length; i++)
-            {
-               
-                    Console.WriteLine($"{number.ToString()} * {i.ToString()} = {array[i].ToString()}");
-               }
-            }
         }
 
     }
